@@ -54,19 +54,11 @@ Keep the whole report under 400 words. You are recon, not a documentation genera
 
 ## When to suggest graphify
 
-If recon mode was `filesystem-only` AND the project has >100 source files (use `find . -type f \( -name "*.py" -o -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.go" -o -name "*.rs" \) | wc -l`), include this exact suggestion line in your header:
+Pick the suggestion line based on what you found, NOT just on recon mode:
 
-```
-Suggestion: run /graphify for ~10x faster recon next time
-```
-
-If recon mode was `graph-backed` and freshness was `stale`, your suggestion line is:
-
-```
-Suggestion: re-run /graphify (index is stale)
-```
-
-Otherwise the suggestion field is empty.
+- **Found `graphify-out/` but it was stale** → `Suggestion: re-run /graphify (index is stale)` (note: `Recon mode` is still `filesystem-only` because Tier 1 step 3 dropped you to Tier 2; `Graph freshness` reports `stale`)
+- **No `graphify-out/` AND the project has >100 source files** (check with `find . -type f \( -name "*.py" -o -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.go" -o -name "*.rs" \) | wc -l`) → `Suggestion: run /graphify for ~10x faster recon next time`
+- **All other cases** (graphify-out present and fresh, OR no graphify-out and project is small) → leave the suggestion value empty
 
 ## What you never do
 
