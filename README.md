@@ -42,4 +42,4 @@ Voltron Main returns a four-part report. Reply `go` to dispatch Lions, `no-go` t
 
 ## Design
 
-See [docs/superpowers/specs/2026-05-28-voltron-lions-plugin-design.md](docs/superpowers/specs/2026-05-28-voltron-lions-plugin-design.md).
+The design rationale and implementation plan are preserved in the [commit history](https://github.com/Cloudscockpit/voltron-lions-claudecode/commits/main) — see commits `f547fa4` (design spec) and `81adfc2` (implementation plan).
