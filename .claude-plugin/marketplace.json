@@ -15,8 +15,8 @@
         "email": "jarjis@actionboard.ai"
       },
       "category": "development",
-      "source": ".",
-      "version": "0.1.0",
+      "source": "./voltron-lions",
+      "version": "0.1.1",
       "homepage": "https://github.com/Cloudscockpit/voltron-lions-claudecode",
       "keywords": ["agents", "orchestration", "voltron", "multi-agent", "mission", "lions"]
     }
