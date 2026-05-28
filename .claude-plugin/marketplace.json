@@ -1,0 +1,24 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "voltron-lions",
+  "description": "Single-plugin marketplace for Voltron-Lions: mission-style multi-agent orchestration with Voltron Main and four specialist Lions (Red/Blue/Green/Yellow).",
+  "owner": {
+    "name": "jarjis",
+    "url": "https://github.com/Cloudscockpit"
+  },
+  "plugins": [
+    {
+      "name": "voltron-lions",
+      "description": "Mission-style multi-agent orchestration: Voltron Main coordinates four specialist Lions (Red/Blue/Green/Yellow) to execute objectives with structured briefs, file-ownership boundaries, skills-gap detection, and risk registers.",
+      "author": {
+        "name": "jarjis",
+        "email": "jarjis@gmail.com"
+      },
+      "category": "development",
+      "source": ".",
+      "version": "0.1.0",
+      "homepage": "https://github.com/Cloudscockpit/voltron-lions-claudecode",
+      "keywords": ["agents", "orchestration", "voltron", "multi-agent", "mission", "lions"]
+    }
+  ]
+}
