@@ -11,8 +11,8 @@
       "name": "voltron-lions",
       "description": "Mission-style multi-agent orchestration: Voltron Main coordinates four specialist Lions (Red/Blue/Green/Yellow) to execute objectives with structured briefs, file-ownership boundaries, skills-gap detection, and risk registers.",
       "author": {
-        "name": "jarjis",
-        "email": "jarjis@gmail.com"
+        "name": "jarjis imam",
+        "email": "jarjis@actionboard.ai"
       },
       "category": "development",
       "source": ".",
