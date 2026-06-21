@@ -16,7 +16,7 @@
       },
       "category": "development",
       "source": "./voltron-lions",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "homepage": "https://github.com/Cloudscockpit/voltron-lions-claudecode",
       "keywords": ["agents", "orchestration", "voltron", "multi-agent", "mission", "lions"]
     }
