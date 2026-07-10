@@ -1,0 +1,119 @@
+{
+  "version": "0.2.0",
+  "description": "Voltron Lions actions map — which Lion handles which action type, and what each action requires. Consumed by the skills-registry skill during Skills Gap analysis (mission Step 4).",
+  "actionTypes": [
+    {
+      "action": "code-implementation",
+      "lion": "red-lion",
+      "description": "Write or modify application code, scaffold features, ship implementations",
+      "requiredTools": ["Read", "Write", "Edit", "Bash"],
+      "skills": [],
+      "status": "covered"
+    },
+    {
+      "action": "file-scaffolding",
+      "lion": "red-lion",
+      "description": "Create new files, directories, boilerplate, and project structure",
+      "requiredTools": ["Write", "Bash"],
+      "skills": [],
+      "status": "covered"
+    },
+    {
+      "action": "api-integration",
+      "lion": "blue-lion",
+      "description": "API clients, SDK wrappers, webhook handlers, external service wiring",
+      "requiredTools": ["Read", "Write", "Edit", "WebFetch"],
+      "skills": [],
+      "status": "covered"
+    },
+    {
+      "action": "database-schema",
+      "lion": "blue-lion",
+      "description": "Schemas, migrations, query layers; additive changes preferred",
+      "requiredTools": ["Read", "Write", "Edit", "Bash"],
+      "skills": [],
+      "status": "covered"
+    },
+    {
+      "action": "data-pipeline",
+      "lion": "blue-lion",
+      "description": "Data transformation pipelines, file and stream I/O, event consumers",
+      "requiredTools": ["Read", "Write", "Edit", "Bash"],
+      "skills": [],
+      "status": "covered"
+    },
+    {
+      "action": "codebase-recon",
+      "lion": "green-lion",
+      "description": "Inventory the project, surface the code map, identify relevant files and patterns",
+      "requiredTools": ["Read", "Glob", "Grep"],
+      "skills": ["graphify"],
+      "requires": "graphify skill optional — used when ./graphify-out/ index is present and fresh",
+      "status": "covered"
+    },
+    {
+      "action": "web-research",
+      "lion": "green-lion",
+      "description": "Research external docs, upstream APIs, and unfamiliar terms for the mission",
+      "requiredTools": ["WebFetch", "WebSearch"],
+      "skills": [],
+      "status": "covered"
+    },
+    {
+      "action": "test-authoring",
+      "lion": "yellow-lion",
+      "description": "Write unit/integration tests for code Red and Blue produced; run suites",
+      "requiredTools": ["Read", "Edit", "Bash"],
+      "skills": [],
+      "status": "covered"
+    },
+    {
+      "action": "security-review",
+      "lion": "yellow-lion",
+      "description": "Trust-boundary validation, secret handling, auth checks, severity-rated findings",
+      "requiredTools": ["Read", "Grep", "Bash"],
+      "skills": [],
+      "status": "covered"
+    },
+    {
+      "action": "skill-scaffolding",
+      "lion": "voltron-main",
+      "description": "Create a new skill when Skills Gap analysis finds a needs-new-skill capability",
+      "requiredTools": ["Skill"],
+      "skills": ["skill-creator"],
+      "requires": "explicit user approval per skill; new skills take effect next session or after /reload",
+      "status": "covered"
+    },
+    {
+      "action": "remote-pod-action",
+      "lion": "voltron-main",
+      "description": "Execute a registered action on a connected actionboard.ai cloud AI pod",
+      "requiredTools": ["Skill"],
+      "skills": [
+        "actionboard-ai:connect-pod",
+        "actionboard-ai:list-actions",
+        "actionboard-ai:execute-action"
+      ],
+      "requires": "actionboard.ai cloud pod connection — see the actionboard-pod-connect skill",
+      "status": "conditional"
+    },
+    {
+      "action": "remote-pod-status",
+      "lion": "voltron-main",
+      "description": "Check Voltron Desktop agent / pod health before dispatching remote actions",
+      "requiredTools": ["Skill"],
+      "skills": ["actionboard-ai:voltron-status"],
+      "requires": "actionboard.ai cloud pod connection — see the actionboard-pod-connect skill",
+      "status": "conditional"
+    },
+    {
+      "action": "raoara-workflow",
+      "lion": "voltron-main",
+      "description": "Run a RAOARA six-phase workflow (Recognize, Acquire, Organize, Apply, Reflect, Amplify) on the pod",
+      "requiredTools": ["Skill"],
+      "skills": ["actionboard-ai:raoara"],
+      "requires": "actionboard.ai cloud pod connection — see the actionboard-pod-connect skill",
+      "status": "conditional"
+    }
+  ]
+}

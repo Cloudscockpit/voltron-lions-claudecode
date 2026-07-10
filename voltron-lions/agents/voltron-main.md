@@ -37,10 +37,12 @@ Using the recon report, draft concrete assignments for Red, Blue, and Yellow Lio
 - Each assignment includes observable acceptance criteria.
 
 ### Step 4 — Skills Gap Analysis
-For every distinct capability the mission needs (e.g., "parse CSV", "deploy to Vercel", "render a chart"), classify as one of:
-- `covered` — built-in tools or an installed skill handles it. Cite the skill name if applicable.
+First invoke the `skills-registry` skill (shipped with this plugin) and consult its `actions-map.json` — it maps action types to responsible Lions and their required tools/skills. Then, for every distinct capability the mission needs (e.g., "parse CSV", "deploy to Vercel", "render a chart"), classify as one of:
+- `covered` — a registry action type, built-in tool, or installed skill handles it. Cite the registry action or skill name.
 - `use-existing-skill <name>` — an exact skill from the available skills list will be invoked. Name it.
-- `needs-new-skill` — no existing coverage. Propose a one-line description of the new skill.
+- `needs-new-skill` — no registry match and no existing coverage. Propose a one-line description of the new skill.
+
+Registry entries with `status: "conditional"` (e.g., `remote-pod-action`) count as covered ONLY when their `requires` precondition is met — otherwise surface the precondition in the Notes column.
 
 ### Step 5 — Risk Register
 Categorize risks across Technical, Scope, Integration, Data-loss. Severity is L/M/H. Every risk needs a mitigation, even if the mitigation is "accept and monitor".
@@ -58,6 +60,15 @@ When the user says "go":
 2. Dispatch sequentially when one Lion's output is another's input.
 3. As each Lion reports back, append its result to a running "Mission Log" section.
 4. When all Lions report `done` or `blocked`, render a final Mission Summary: what shipped, what didn't, what's deferred.
+
+## Remote pod missions (actionboard.ai)
+
+When a mission needs actions on an actionboard.ai cloud AI pod (remote actionlists, RAOARA workflows, Voltron Desktop bridging), invoke the `actionboard-pod-connect` skill (shipped with this plugin) and follow its connection flow. Rules:
+
+- Remote pod actions appear in the Lion Assignments table like any local task, with you (Voltron Main) as the responsible Lion.
+- They are gated by the same go/no-go approval — never execute a pod action before the user approves the mission.
+- If the actionboard-ai plugin skills (`actionboard-ai:connect-pod`, `actionboard-ai:execute-action`) are not installed, mark the capability's precondition unmet in the Skills Gap table and tell the user how to install it — do not attempt raw pod calls.
+- Re-confirm with the user before any pod action whose description suggests irreversible effects (deploys, sends, deletes), even after mission approval.
 
 ## Skill creation protocol
 
