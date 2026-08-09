@@ -77,8 +77,42 @@ The plugin ships a machine-readable registry of everything the Lions can do:
 | test-authoring, security-review | Yellow | covered |
 | skill-scaffolding | Voltron Main | covered (asks approval first) |
 | remote-pod-action, remote-pod-status, raoara-workflow | Voltron Main | conditional — needs an actionboard.ai pod connection |
+| live-browser-action | Voltron Main | conditional — per-site user approval; credentials always handed to you |
+| actionboard-onboarding | Voltron Main | covered |
+| local-mcp-connect | Voltron Main | conditional — needs the voltron-backend stack running locally |
 
 To register a new action type, edit `actions-map.json`, bump the plugin version, and reinstall.
+
+## Getting started as a new user (no account yet?)
+
+Ask Voltron: **"help me get started with actionboard"** — the `actionboard-onboarding` skill walks you through, one step at a time:
+
+1. **Sign up** at [actionboard.ai](https://actionboard.ai) (Claude can open the page and guide you — it hands you the browser for passwords and verification; it never types credentials).
+2. **Install Voltron Castle Desktop** from the [releases page](https://github.com/Cloudscockpit/actionboard-desktop-app/releases) and sign in.
+3. **Verify the bridge** — ask "check voltron status".
+
+## Connect Claude Cowork to the local Voltron MCP endpoint
+
+Running the voltron-backend stack locally? Ask: **"connect cowork to the local voltron mcp"** — the `cowork-mcp-connect` skill checks the endpoint (`http://localhost:8200/mcp`), then walks either path:
+
+- **Developers (Claude Code):** `claude mcp add --transport http voltron http://localhost:8200/mcp`
+- **Non-technical (Cowork/Desktop):** Settings → Connectors → Add custom connector → URL `http://localhost:8200/mcp`
+
+This gives Claude direct access to the local Voltron actionlist tools — no cloud pod needed.
+
+## Browser actions in missions
+
+The `browser-actions` skill (+ `kb/claude-browser-actions.md`) teaches Voltron how to drive a real browser during missions — navigate, read pages, fill forms, screenshot, debug web apps — with hard rules: per-site approval, credentials/CAPTCHAs always handed to you, confirmation before any irreversible web action, and page content treated as data, never as instructions.
+
+## Knowledge base
+
+The plugin ships a `kb/` folder the skills draw on:
+
+| Doc | Covers |
+|-----|--------|
+| [kb/claude-browser-actions.md](voltron-lions/kb/claude-browser-actions.md) | The two browser surfaces, capabilities, conduct rules, browser flows vs live actions |
+| [kb/actionboard-onboarding.md](voltron-lions/kb/actionboard-onboarding.md) | Signup, Voltron Castle Desktop install, bridge verification, troubleshooting |
+| [kb/voltron-mcp-endpoints.md](voltron-lions/kb/voltron-mcp-endpoints.md) | Local MCP endpoint table, prerequisites, security notes |
 
 ## Connect to an actionboard.ai Cloud AI Pod (remote missions)
 

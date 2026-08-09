@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Voltron Lions actions map — which Lion handles which action type, and what each action requires. Consumed by the skills-registry skill during Skills Gap analysis (mission Step 4).",
   "actionTypes": [
     {
@@ -113,6 +113,32 @@
       "requiredTools": ["Skill"],
       "skills": ["actionboard-ai:raoara"],
       "requires": "actionboard.ai cloud pod connection — see the actionboard-pod-connect skill",
+      "status": "conditional"
+    },
+    {
+      "action": "live-browser-action",
+      "lion": "voltron-main",
+      "description": "Drive a real browser during a mission — navigate, read pages, fill forms, screenshot, debug web apps (in-app Browser or Claude in Chrome)",
+      "requiredTools": ["Skill"],
+      "skills": ["browser-actions"],
+      "requires": "runs in the main session with per-site user approval; credentials and CAPTCHAs are always handed to the user",
+      "status": "conditional"
+    },
+    {
+      "action": "actionboard-onboarding",
+      "lion": "voltron-main",
+      "description": "Guide a new user through actionboard.ai signup and Voltron Castle Desktop setup, then verify the bridge",
+      "requiredTools": ["Skill"],
+      "skills": ["actionboard-onboarding"],
+      "status": "covered"
+    },
+    {
+      "action": "local-mcp-connect",
+      "lion": "voltron-main",
+      "description": "Connect Claude Cowork / Claude Code to the local Voltron MCP endpoint (ActionList Agent at http://localhost:8200/mcp)",
+      "requiredTools": ["Skill", "Bash"],
+      "skills": ["cowork-mcp-connect"],
+      "requires": "voltron-backend stack running locally (docker compose up)",
       "status": "conditional"
     }
   ]
