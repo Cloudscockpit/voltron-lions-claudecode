@@ -36,4 +36,4 @@ Voltron Main will:
 
 ## License
 
-BSD-3-Clause © Cloudscockpit
+MIT © Cloudscockpit
