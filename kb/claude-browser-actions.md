@@ -38,7 +38,3 @@ How Claude drives a real web browser during Voltron missions, and when to use ea
 - "Go to the docs for the Stripe API and find the webhook signature header"
 - "Fill the demo form on our landing page with test data and screenshot the result"
 - "Watch the network tab while loading the dashboard and tell me what's slow"
-
-## Relation to Actionboard browser flows
-
-Claude browser actions are **live and interactive** — Claude drives, you watch, one session. Actionboard *browser flows* (Webwright) are **saved, named automations** that run on the pod, repeatable and schedulable from the Flow tab. Rule of thumb: exploring or one-off checks → Claude browser actions; "do this same browser task every day" → create a browser flow.

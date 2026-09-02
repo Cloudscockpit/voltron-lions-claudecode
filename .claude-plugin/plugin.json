@@ -1,0 +1,23 @@
+{
+  "name": "voltron-lions",
+  "displayName": "Voltron Lions",
+  "version": "0.4.0",
+  "description": "Mission-style multi-agent orchestration: Voltron Main coordinates four specialist Lions (Red/Blue/Green/Yellow) to execute objectives with structured briefs, file-ownership boundaries, skills-gap detection, and risk registers. Mission documents export as Markdown plus schema.org JSON-LD.",
+  "author": {
+    "name": "jarjis imam",
+    "email": "jarjis@actionboard.ai"
+  },
+  "homepage": "https://github.com/Cloudscockpit/voltron-lions-claudecode#readme",
+  "repository": "https://github.com/Cloudscockpit/voltron-lions-claudecode",
+  "license": "MIT",
+  "keywords": [
+    "agents",
+    "orchestration",
+    "multi-agent",
+    "mission",
+    "planning",
+    "knowledge-graph",
+    "json-ld",
+    "schema-org"
+  ]
+}

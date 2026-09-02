@@ -5,12 +5,12 @@ description: Guide for using Claude's browser action feature (in-app Browser pan
 
 # Browser Actions in Voltron Missions
 
-Full reference: read `kb/claude-browser-actions.md` at the plugin root (`${CLAUDE_PLUGIN_ROOT}/kb/claude-browser-actions.md` when available, otherwise resolve relative to this plugin's install directory).
+Full reference: `${CLAUDE_PLUGIN_ROOT}/kb/claude-browser-actions.md`.
 
 ## Quick decision
 
 1. **Which surface?** Default to the in-app Browser. Use Claude in Chrome ONLY when the task needs the user's existing logged-in sessions — and say so explicitly before switching.
-2. **Live or saved?** One-off exploration/verification → browser actions now. A repeatable browser task ("do this daily") → suggest creating an Actionboard browser flow instead.
+2. **Live or saved?** Browser actions are live and interactive — Claude drives one session while the user watches. There is no recording or replay: a task the user wants repeated daily needs a scheduled job on their side, not a browser action.
 
 ## Conduct rules (non-negotiable)
 

@@ -19,7 +19,7 @@ During Skills Gap analysis:
 2. For each capability the mission needs, find the closest matching `action` entry:
    - **Exact or close match found, `status: "covered"`** → classify the capability as `covered`, cite the responsible Lion from the entry.
    - **Match found with non-empty `skills` list** → classify as `use-existing-skill <name>` using the first skill in the list; the responsible Lion invokes it.
-   - **Match found with `requires` field** → the capability is conditionally covered. Surface the requirement (e.g., an actionboard.ai pod connection) in the Skills Gap table Notes column.
+   - **Match found with `requires` field** → the capability is conditionally covered. Surface the requirement (e.g., per-site user approval for `live-browser-action`) in the Skills Gap table Notes column.
    - **No match** → classify as `needs-new-skill` and propose a one-line description.
 3. When `skill-creator` scaffolds a new skill mid-mission, append a new entry to the actions map in your Mission Summary so the user can commit it (the plugin's copy of `actions-map.json` is read-only at runtime — registry updates ship with the next plugin version).
 
@@ -34,7 +34,7 @@ Each entry in `actionTypes`:
 | `description` | One line: what this action type covers |
 | `requiredTools` | Built-in Claude Code tools the Lion needs (must be in the Lion's frontmatter `tools:`) |
 | `skills` | Skills the Lion invokes for this action (empty = built-ins suffice) |
-| `requires` | Optional precondition outside the plugin (e.g., a cloud pod connection) |
+| `requires` | Optional precondition outside this action (e.g., per-site approval, or a prior document) |
 | `status` | `covered` \| `conditional` \| `experimental` |
 
 ## Answering "what can the Lions do"
