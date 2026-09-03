@@ -1,8 +1,8 @@
 {
   "name": "voltron-lions",
   "displayName": "Voltron Lions",
-  "version": "0.4.0",
-  "description": "Mission-style multi-agent orchestration: Voltron Main coordinates four specialist Lions (Red/Blue/Green/Yellow) to execute objectives with structured briefs, file-ownership boundaries, skills-gap detection, and risk registers. Mission documents export as Markdown plus schema.org JSON-LD.",
+  "version": "0.4.1",
+  "description": "Turn one objective into a reviewed plan, then execute it with five parallel agents that never touch the same file. Nothing runs until you approve. Briefs, plans, and reports export as Markdown plus schema.org JSON-LD, so a directory of missions becomes a queryable history.",
   "author": {
     "name": "jarjis imam",
     "email": "jarjis@actionboard.ai"

@@ -1,5 +1,5 @@
 {
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Voltron Lions actions map — which Lion handles which action type, and what each action requires. Consumed by the skills-registry skill during Skills Gap analysis (mission Step 4).",
   "actionTypes": [
     {

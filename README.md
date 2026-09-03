@@ -1,21 +1,62 @@
-# Voltron-Lions
+# Voltron Lions
 
-A plugin marketplace for **Voltron Lions** — mission-style multi-agent orchestration for
-Claude Code and Claude Cowork. One command. Five themed agents. Structured, machine-readable
-output.
+Turn one objective into a reviewed plan, then execute it with five parallel agents that never
+touch the same file. **Nothing runs until you approve.**
 
-## What it does
+For Claude Code and Claude Cowork.
 
-`/start-mission <objective>` invokes **Voltron Main** (the Black Lion), who:
+```
+/start-mission add a /health endpoint to the express app that returns service version
+```
 
-1. Drafts a **Mission Brief** — objective, scope, out of scope, success criteria, constraints
-2. Sends **Green Lion** on read-only recon (uses `graphify-out/` when present and fresh)
-3. Generates **Lion Assignments** with strict file-ownership boundaries
-4. Performs **Skills Gap** analysis against the built-in skills registry & actions map
-5. Builds a **Risk Register** — technical / scope / integration / data-loss, severity L/M/H
-6. Waits for your **go / no-go**, then dispatches Red / Blue / Yellow Lions to execute
+## What you get back
 
-Nothing is written and no Lion is dispatched before you approve.
+Voltron Main drafts the plan, sends Green Lion on read-only recon first, then stops:
+
+```markdown
+## Mission Brief
+Objective     Expose service version and uptime on an unauthenticated GET /health.
+Out of scope  Auth, rate limiting, Prometheus metrics, k8s probe wiring
+Success       1. GET /health returns 200 with {status, version, uptime}
+              2. version matches package.json
+              3. Integration test passes in CI
+Constraints   Express 4.x, no new runtime dependencies
+
+## Lion Assignments
+| Lion   | Task                              | Files Owned           | Depends On | Acceptance                  |
+|--------|-----------------------------------|-----------------------|------------|-----------------------------|
+| Red    | Implement GET /health             | src/routes/health.js  | —          | curl returns 200 + version  |
+| Blue   | Read version from package.json    | src/config/version.js | —          | matches package.json        |
+| Yellow | Integration test for the route    | test/health.test.js   | Red, Blue  | npm test passes             |
+
+## Skills Gap
+| Capability         | Status  | Notes                        |
+|--------------------|---------|------------------------------|
+| route handler      | covered | code-implementation -> Red   |
+| version at boot    | covered | api-integration -> Blue      |
+| integration test   | covered | test-authoring -> Yellow     |
+
+## Risk Register
+| Category  | Risk                                    | Sev | Mitigation                         |
+|-----------|-----------------------------------------|-----|------------------------------------|
+| technical | /health leaks build metadata            | M   | Return semver only, never SHA/env  |
+| scope     | Existing 404 handler shadows the route  | L   | Register before catch-all          |
+
+Mission ready. Reply **go** to dispatch Lions, **no-go** to revise, or **edit <section>**.
+```
+
+Reply `go` and Red and Blue run **in parallel** — their file sets don't overlap, so they can't
+collide — then Yellow runs once both report. Each Lion returns `done` or `blocked`, and
+blocked work stays in the report with its reason instead of quietly disappearing.
+
+That file-ownership column is the whole trick: it's what makes parallel dispatch safe, and
+it's checked before anything is dispatched rather than discovered as a merge conflict.
+
+## Why the gate matters
+
+The plan is a cheap artifact. Reading four tables costs you thirty seconds; discovering
+halfway through that the mission misunderstood your scope costs a lot more. Every mission
+stops at go/no-go, and `edit <section>` lets you fix one table without redoing the rest.
 
 ## The Lions
 
@@ -78,7 +119,26 @@ per-mission — that is what makes a directory of missions worth querying: which
 most often, which Lion's assignments need a second pass, which success criteria keep coming
 back unmet.
 
-Full type mapping, identifier scheme, status vocabulary, and a worked example:
+Red Lion's assignment from the mission above, after it reported `done`:
+
+```json
+{
+  "@type": "Action",
+  "@id": "urn:voltron:mission:add-health-endpoint:assignment:1",
+  "name": "Implement GET /health",
+  "agent":  { "@id": "urn:voltron:lion:red" },
+  "object": { "@id": "urn:voltron:file:src/routes/health.js" },
+  "actionStatus": "https://schema.org/CompletedActionStatus"
+}
+```
+
+Lion status maps onto schema.org's `ActionStatusType`, so a plan and a report are the *same*
+graph differing only in `actionStatus` — `Potential` while awaiting your go, `Completed` or
+`Failed` once the Lion reports. Because `urn:voltron:file:src/routes/health.js` is the same
+node in every mission that touches that file, ten missions later you can ask which files
+accumulate the most `FailedActionStatus` assignments.
+
+Full type mapping, identifier scheme, status vocabulary, and a longer worked example:
 [kb/mission-knowledge-format.md](kb/mission-knowledge-format.md).
 
 ## Skills registry & actions map
