@@ -9,6 +9,9 @@ For Claude Code and Claude Cowork.
 /start-mission add a /health endpoint to the express app that returns service version
 ```
 
+> **Landing page:** [`docs/index.html`](docs/index.html) — setup for both Claude Code and Cowork,
+> and the full guide to adding your own skills for the Lions.
+
 ## What you get back
 
 Voltron Main drafts the plan, sends Green Lion on read-only recon first, then stops:
